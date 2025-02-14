@@ -46,10 +46,14 @@ export const loginUser = async (req, res) => {
     return res.status(500).json(error.message);
   }
 };
-export const logoutUser=()=>
+export const logoutUser=(req,res)=>
 {
     try {
-        
+        res.cookie("token","",
+            {
+                maxAge:0
+            })
+            res.status(200).json("User Logged Out Successfully")
     } catch (error) {
         res.status(500).json(error.message)
     }

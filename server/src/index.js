@@ -10,8 +10,10 @@ app.use(cookieParser())
 app.use(cors())
 //import routes
 import authRoutes from "./routes/authRoutes.js"
+import noteRoutes from "./routes/noteRoutes.js"
 //using routes
 app.use("/api/v1/auth",authRoutes)
+app.use("/api/v1/note",noteRoutes)
 app.listen(port,()=>
     {
         console.log(`server is runing on http://localhost:${port}`)
