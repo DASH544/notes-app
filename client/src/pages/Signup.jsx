@@ -1,4 +1,5 @@
 import React from "react";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -7,6 +8,7 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [data, setData] = useState(null);
+   const [passwordShown, isPasswordShown] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await axios.post(
@@ -38,6 +40,7 @@ const Signup = () => {
               Name
             </label>
             <input
+             autoComplete="off"
               type="text"
               id="name"
               value={fname}
@@ -57,6 +60,7 @@ const Signup = () => {
             <input
               type="email"
               id="email"
+              autoComplete="off"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -71,16 +75,32 @@ const Signup = () => {
             >
               Password
             </label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Enter your password"
-              required
-            />
+          <div className="flex items-center justify-center  relative">
+                         <input
+                           type={passwordShown ? "text" : "password"}
+                           id="password"
+                           value={password}
+                           onChange={(e) => setPassword(e.target.value)}
+                           className="w-full px-4 py-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 "
+                           autoComplete="off"
+                           placeholder="Enter your password"
+                           required
+                         />
+                         <div onClick={(e)=>(isPasswordShown((prev)=>!prev))} className="absolute right-2">
+                         {passwordShown ? (
+                           <FaRegEye size={22} className="cursor-pointer text-white" />
+                         ) : (
+                           <FaRegEyeSlash size={22} className="cursor-pointer text-white " />
+                         )}
+                         </div>
+                       </div>
           </div>
+          {data && (
+          <div className="mt-4 p-4 bg-gray-700 rounded-lg text-white">
+            <pre>{JSON.stringify(data, null, 2)}</pre>{" "}
+            {/* Pretty-printed JSON */}
+          </div>
+        )}
           <div>
             <button
               type="submit"
@@ -97,13 +117,8 @@ const Signup = () => {
           </div>
         </form>
 
-        {/* Display API response (optional) */}
-        {data && (
-          <div className="mt-4 p-4 bg-gray-700 rounded-lg text-white">
-            <pre>{JSON.stringify(data, null, 2)}</pre>{" "}
-            {/* Pretty-printed JSON */}
-          </div>
-        )}
+  
+      
       </div>
     </div>
   );

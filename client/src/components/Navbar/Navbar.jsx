@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import SearchBar from '../SearchBar/SearchBar';
 import ProfileInfo from '../Cards/ProfileInfo';
-import {navigate} from "react-router-dom"
+import {useNavigate} from "react-router-dom"
 const Navbar = () => {
+  const navigate = useNavigate()
   const [searchQuery,setSearchQuery]=useState()
   const handleSearch=()=>{}
   const onClearSearch=()=>
@@ -11,7 +12,7 @@ const Navbar = () => {
     }
   const onLogout=()=>
     {
-      navigate("/signin")
+      navigate("/signin");
     }
   return (
     <nav className=" px-4 py-2 flex flex-wrap items-center justify-between">
