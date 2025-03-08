@@ -25,6 +25,7 @@ const Signin = () => {
       setError(response.data.issues)
       console.log(response);
     } catch (error) {
+      setError(error)
       console.error("Error during login:", error);
     }
   };

@@ -5,12 +5,12 @@ const NoteCard = ({title, date,isPinned,onPinNote,content,tags,onEdit,onDelete})
     <div className="border border-slate-300 rounded p-4 bg-white hover:shadow-xl transition-all ease-in-out ">
         <div className="flex items-center justify-between">
                 <div >
-                    <h6 className="text-sm font-medium">{title} Wake up at 6am</h6>
-                    <span className="text-sm text-green-700">{date}12th Jun,2024</span>
+                    <h6 className="text-sm font-medium">{title}</h6>
+                    <span className="text-sm text-green-700">{date}</span>
                 </div>
                 <MdOutlinePushPin size={22} onClick={onPinNote} className={`cursor-pointer ${isPinned ? "text-green-500":"text-slate-500"}`}/>
         </div>
-        <p className="text-xs text-slate-600 mt-2 ">{content?.slice(0,60)} Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae, delectus! Voluptatem, repellendus odit at sunt reiciendis earum quaerat quos odio quisquam. Quos maxime maiores totam ab consequuntur ipsam modi aspernatur.
+        <p className="text-xs text-slate-600 mt-2 ">{content?.slice(0,60)}
         </p>
         <div className="flex items-center justify-between mt-2">
             <div className="text-xs text-slate-500">#tags{tags}</div>
